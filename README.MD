@@ -1,7 +1,9 @@
-# WEBPACK BOILER PLATE
+# SAMPLE REVIEWS PAGE
 
-This webpack simple boiler plate for web development.
+This website is coded to practice navigation bar, modals with reviews content.
 
-It split between development and production.
-
-Production code will contains the files and assests minified and optmized for performance.
+# Techonology used
+- Vanilla Javascript
+-HTML5
+- SASS
+- Webpack
