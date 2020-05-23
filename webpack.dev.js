@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = merge(common, {
 	mode: 'development',
 	output: {
-		filename: 'main.js',
+		filename: '[name].bundle.js',
 		// absolute path to dist
 		path: path.resolve(__dirname, 'dist')
 	},

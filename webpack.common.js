@@ -1,6 +1,9 @@
 // main file exported to prod and dev
 module.exports = {
-	entry: './src/app.js',
+	entry: {
+		main: './src/app.js',
+		vendor: './src/vendor.js'
+	},
 	module: {
 		rules: [
 			{
