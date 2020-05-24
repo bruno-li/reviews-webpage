@@ -1,3 +1,4 @@
+import './style.scss';
 import navbar from './navbar';
 import modal from './modal';
-import './style.scss';
+import review from './review';
