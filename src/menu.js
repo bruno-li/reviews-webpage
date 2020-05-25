@@ -4,7 +4,8 @@ const menu = [
 		title: 'buttermilk pancakes',
 		category: 'breakfast',
 		price: 15.99,
-		img: 'src/assets/item-1.jpeg',
+		img:
+			'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
 		desc: `I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed `
 	},
 	{
@@ -12,7 +13,7 @@ const menu = [
 		title: 'diner double',
 		category: 'lunch',
 		price: 13.99,
-		img: 'src/assets/item-2.jpeg',
+		img: 'https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
 		desc: `vaporware iPhone mumblecore selvage raw denim slow-carb leggings gochujang helvetica man braid jianbing. Marfa thundercats `
 	},
 	{
@@ -20,7 +21,7 @@ const menu = [
 		title: 'godzilla milkshake',
 		category: 'shakes',
 		price: 6.99,
-		img: 'src/assets/item-3.jpeg',
+		img: 'https://images.pexels.com/photos/2638026/pexels-photo-2638026.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
 		desc: `ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`
 	},
 	{
@@ -28,7 +29,7 @@ const menu = [
 		title: 'country delight',
 		category: 'breakfast',
 		price: 20.99,
-		img: 'src/assets/item-4.jpeg',
+		img: 'https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
 		desc: `Shabby chic keffiyeh neutra snackwave pork belly shoreditch. Prism austin mlkshk truffaut, `
 	},
 	{
@@ -36,7 +37,7 @@ const menu = [
 		title: 'egg attack',
 		category: 'lunch',
 		price: 22.99,
-		img: 'src/assets/item-5.jpeg',
+		img: 'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
 		desc: `franzen vegan pabst bicycle rights kickstarter pinterest meditation farm-to-table 90's pop-up `
 	},
 	{
@@ -44,7 +45,7 @@ const menu = [
 		title: 'oreo dream',
 		category: 'shakes',
 		price: 18.99,
-		img: 'src/assets/item-6.jpeg',
+		img: 'https://images.pexels.com/photos/3727250/pexels-photo-3727250.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
 		desc: `Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday`
 	},
 	{
@@ -52,7 +53,7 @@ const menu = [
 		title: 'bacon overflow',
 		category: 'breakfast',
 		price: 8.99,
-		img: 'src/assets/item-7.jpeg',
+		img: 'https://images.pexels.com/photos/750073/pexels-photo-750073.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
 		desc: `carry jianbing normcore freegan. Viral single-origin coffee live-edge, pork belly cloud bread iceland put a bird `
 	},
 	{
@@ -60,7 +61,7 @@ const menu = [
 		title: 'american classic',
 		category: 'lunch',
 		price: 12.99,
-		img: 'src/assets/item-8.jpeg',
+		img: 'https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
 		desc: `on it tumblr kickstarter thundercats migas everyday carry squid palo santo leggings. Food truck truffaut  `
 	},
 	{
@@ -68,14 +69,15 @@ const menu = [
 		title: 'quarantine buddy',
 		category: 'shakes',
 		price: 16.99,
-		img: 'src/assets/item-9.jpeg',
+		img: 'https://images.pexels.com/photos/3951901/pexels-photo-3951901.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
 		desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`
 	}
 ];
 
 const sectionCenter = document.querySelector('.section-center');
+const filterContainer = document.querySelector('.btn-container');
 
-const displayMenuItems = (menuItems) => {
+export const displayMenuItems = (menuItems) => {
 	let displayMenu = menuItems.map((item) => {
 		return `<article class="menu-item">
                     <img src="${item.img}" alt="menu item" class="photo" />
@@ -93,6 +95,36 @@ const displayMenuItems = (menuItems) => {
 	displayMenu = displayMenu.join('');
 	sectionCenter.innerHTML = displayMenu;
 };
+
+// display menu only if user is on the menu page
 if (sectionCenter) {
 	displayMenuItems(menu);
+
+	// filter menus
+	filterContainer.addEventListener('click', (e) => {
+		let filterBtn = e.target.dataset.id;
+		switch (filterBtn) {
+			case 'all':
+				displayMenuItems(menu);
+				break;
+			case 'breakfast':
+				const breakfast = menu.filter((item) => {
+					return item.category === 'breakfast';
+				});
+				displayMenuItems(breakfast);
+				break;
+			case 'lunch':
+				const lunch = menu.filter((item) => {
+					return item.category === 'lunch';
+				});
+				displayMenuItems(lunch);
+				break;
+			case 'shakes':
+				const shakes = menu.filter((item) => {
+					return item.category === 'shakes';
+				});
+				displayMenuItems(shakes);
+				break;
+		}
+	});
 }
