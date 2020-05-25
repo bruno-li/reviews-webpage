@@ -71,6 +71,14 @@ const menu = [
 		price: 16.99,
 		img: 'https://images.pexels.com/photos/3951901/pexels-photo-3951901.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
 		desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`
+	},
+	{
+		id: 10,
+		title: 'steak dinner',
+		category: 'dinner',
+		price: 39.99,
+		img: 'https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+		desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`
 	}
 ];
 
@@ -102,29 +110,15 @@ if (sectionCenter) {
 
 	// filter menus
 	filterContainer.addEventListener('click', (e) => {
-		let filterBtn = e.target.dataset.id;
-		switch (filterBtn) {
-			case 'all':
-				displayMenuItems(menu);
-				break;
-			case 'breakfast':
-				const breakfast = menu.filter((item) => {
-					return item.category === 'breakfast';
-				});
-				displayMenuItems(breakfast);
-				break;
-			case 'lunch':
-				const lunch = menu.filter((item) => {
-					return item.category === 'lunch';
-				});
-				displayMenuItems(lunch);
-				break;
-			case 'shakes':
-				const shakes = menu.filter((item) => {
-					return item.category === 'shakes';
-				});
-				displayMenuItems(shakes);
-				break;
+		let category = e.target.dataset.id;
+		let menuItems = menu.filter((item) => {
+			return item.category === category;
+		});
+
+		if (category === 'all') {
+			displayMenuItems(menu);
+		} else {
+			displayMenuItems(menuItems);
 		}
 	});
 }
