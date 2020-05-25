@@ -1,4 +1,4 @@
-# SAMPLE REVIEWS PAGE
+# SAMPLE RESTAURANT PAGE
 
 This website is coded to practice navigation bar, modals with reviews content.
 

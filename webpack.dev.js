@@ -15,6 +15,10 @@ module.exports = merge(common, {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/template.html'
+		}),
+		new HtmlWebpackPlugin({
+			filename: 'menu.html',
+			template: './src/menu.html'
 		})
 	],
 	module: {

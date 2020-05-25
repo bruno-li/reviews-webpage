@@ -46,12 +46,6 @@ const randomBtn = document.querySelector('.random-btn');
 //set stert item
 let currentItem = 0;
 
-// load initial item when page loads
-
-window.addEventListener('DOMContentLoaded', () => {
-	showPerson(currentItem);
-});
-
 const showPerson = (person) => {
 	const item = reviews[person];
 	img.src = item.img;
@@ -60,23 +54,26 @@ const showPerson = (person) => {
 	info.textContent = item.text;
 };
 
-prevBtn.addEventListener('click', () => {
-	currentItem--;
-	if (currentItem < 0) {
-		currentItem = reviews.length - 1;
-	}
-	showPerson(currentItem);
-});
+// add event listene only if the buttons are rendered in the DOM
+if (prevBtn) {
+	prevBtn.addEventListener('click', () => {
+		currentItem--;
+		if (currentItem < 0) {
+			currentItem = reviews.length - 1;
+		}
+		showPerson(currentItem);
+	});
 
-nextBtn.addEventListener('click', () => {
-	currentItem++;
-	if (currentItem > reviews.length - 1) {
-		currentItem = 0;
-	}
-	showPerson(currentItem);
-});
+	nextBtn.addEventListener('click', () => {
+		currentItem++;
+		if (currentItem > reviews.length - 1) {
+			currentItem = 0;
+		}
+		showPerson(currentItem);
+	});
 
-randomBtn.addEventListener('click', () => {
-	let randomPerson = Math.floor(Math.random() * reviews.length);
-	showPerson(randomPerson);
-});
+	randomBtn.addEventListener('click', () => {
+		let randomPerson = Math.floor(Math.random() * reviews.length);
+		showPerson(randomPerson);
+	});
+}
