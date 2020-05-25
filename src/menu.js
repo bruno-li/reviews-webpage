@@ -85,7 +85,7 @@ const menu = [
 const sectionCenter = document.querySelector('.section-center');
 const filterContainer = document.querySelector('.btn-container');
 
-export const displayMenuItems = (menuItems) => {
+const displayMenuItems = (menuItems) => {
 	let displayMenu = menuItems.map((item) => {
 		return `<article class="menu-item">
                     <img src="${item.img}" alt="menu item" class="photo" />
@@ -104,11 +104,33 @@ export const displayMenuItems = (menuItems) => {
 	sectionCenter.innerHTML = displayMenu;
 };
 
+const displayMenuCategory = () => {
+	// get unique menu category
+	const categories = menu.reduce(
+		(curr, item) => {
+			if (!curr.includes(item.category)) {
+				curr.push(item.category);
+			}
+			return curr;
+		},
+		[ 'all' ]
+	);
+
+	// generate the menu category buttons
+	const categoryBtn = categories
+		.map((category) => {
+			return `<button type="button" class="filter-btn" data-id="${category}">${category}</button>`;
+		})
+		.join('');
+	filterContainer.innerHTML = categoryBtn;
+};
+
 // display menu only if user is on the menu page
 if (sectionCenter) {
 	displayMenuItems(menu);
+	displayMenuCategory();
 
-	// filter menus
+	// filter menu categoty
 	filterContainer.addEventListener('click', (e) => {
 		let category = e.target.dataset.id;
 		let menuItems = menu.filter((item) => {
